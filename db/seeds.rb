@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Team.create(name: '読売ジャイアンツ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 1)
+Team.create(name: '広島東洋カープ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 1)
+Team.create(name: '阪神タイガース', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 1)
+Team.create(name: '中日ドラゴンズ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 1)
+Team.create(name: '横浜ベイスターズ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 1)
+Team.create(name: '東京ヤクルトスワローズ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 1)
+Team.create(name: '福岡ソフトバンクホークス', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 2)
+Team.create(name: '千葉ロッテマリーンズ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 2)
+Team.create(name: 'オリックスバッファローズ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 2)
+Team.create(name: '西武ライオンズ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 2)
+Team.create(name: '北海道日本ハムファイターズ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 2)
+Team.create(name: '東北楽天ゴールデンイーグル', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 2)
