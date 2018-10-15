@@ -1,10 +1,10 @@
 class Admin::TeamsController < Admin::ApplicationController
 
-
+  before_action :get_team, only: [:edit, :update]
 
 
   def index
-    @teams = Team.all.order_league.page(params[:page]).per(6)
+    @teams = Team.all.order_league.page(params[:page]).per(12)
   end
 
   def new
@@ -17,8 +17,21 @@ class Admin::TeamsController < Admin::ApplicationController
       flash[:success] = '球団の登録に成功しました。'
       redirect_to admin_teams_path
     else
-      flash.now['danger'] = '入力項目に不備があります。'
+      flash.now[:danger] = '入力項目に不備があります。'
       render 'new'
+    end
+  end
+  
+  def edit
+  end
+
+  def update
+    if @team.update team_params
+      flash[:success] = '球団の変更に成功しました。'
+      redirect_to admin_teams_path
+    else
+      flash.now[:danger] = '入力項目に不備があります。'
+      render 'edit'
     end
   end
 
@@ -30,5 +43,9 @@ class Admin::TeamsController < Admin::ApplicationController
         :address,
         :league
     )
+  end
+
+  def get_team
+    @team = Team.find(params[:id])
   end
 end
