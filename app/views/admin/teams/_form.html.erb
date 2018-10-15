@@ -1,4 +1,13 @@
-<%= form_for [:admin, @teams] do |f| %>
+<% if @team.errors.any? %>
+<ul>
+  <% @team.errors.full_messages.each do |msg| %>
+    <li>
+      <span style="color:red;"><%= msg %></span>
+    </li>
+  <% end %>
+</ul>
+<% end %>
+<%= form_for [:admin, @team] do |f| %>
   <div class="form-group">
     <%= f.label :name, '球団名' %>
     <%= f.text_field :name, class: 'form-control'%>

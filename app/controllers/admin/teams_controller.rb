@@ -8,14 +8,17 @@ class Admin::TeamsController < Admin::ApplicationController
   end
 
   def new
-    @teams = Team.new
+    @team = Team.new
   end
 
   def create
-    if Team.create team_params
+    @team = Team.new team_params
+    if @team.save
       flash[:success] = '球団の登録に成功しました。'
       redirect_to admin_teams_path
     else
+      flash.now['danger'] = '入力項目に不備があります。'
+      render 'new'
     end
   end
 

@@ -59,6 +59,7 @@
 
     <!-- main -->
     <div class="col-md-9">
+<!--      flashメッセージ-->
       <% flash.each do |name, msg| %>
         <div class="alert alert-<%= name %>">
           <%= msg.html_safe %>
