@@ -35,6 +35,12 @@ class Admin::TeamsController < Admin::ApplicationController
     end
   end
 
+  def destroy
+    @teams.destroy
+    flash[:success] = '球団の削除に成功しました。'
+    redirect_to admin_teams_path
+  end
+
   private
   def team_params
     params.require(:team).permit(
