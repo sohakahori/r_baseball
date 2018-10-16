@@ -7,6 +7,7 @@
     <th>リーグ</th>
     <th>スタジアム</th>
     <th>住所</th>
+    <th>選手一覧</th>
     <th>編集</th>
     <th>削除</th>
   </tr>
@@ -19,6 +20,7 @@
     <td><%= team.get_league_name %></td>
     <td><%= team.stadium %></td>
     <td><%= team.address %></td>
+    <td><%= link_to("選手一覧", admin_team_players_path(team), class: 'btn btn-success') %></td>
     <td><%= link_to("編集", edit_admin_team_path(team), class: 'btn btn-success') %></td>
     <td><%= link_to("削除", admin_team_path(team), method: :delete, data: {confirm: '削除してよろしいでしょうか？'}, class: 'btn btn-danger') %></td>
   </tr>

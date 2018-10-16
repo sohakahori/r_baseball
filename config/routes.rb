@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   #
 
   namespace :admin do
-    resources :teams
+    resources :teams, except: :show do
+      resources :players
+    end
   end
 
   scope module: :public do

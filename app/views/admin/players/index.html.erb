@@ -1,0 +1,32 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>背番号</th>
+    <th>名前</th>
+    <th>守備位置</th>
+    <th>生年月日</th>
+    <th>身長</th>
+    <th>体重</th>
+    <th>投</th>
+    <th>打</th>
+    <th>備考</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @players.each do |player| %>
+    <tr>
+      <td><%= player.no %></td>
+      <td><%= player.name %></td>
+      <td><%= player.position %></td>
+      <td><%= player.birthday %></td>
+      <td><%= player.height %></td>
+      <td><%= player.weight %></td>
+      <td><%= player.throw %></td>
+      <td><%= player.hit %></td>
+      <td><%= player.detail %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<!--Todo: スタイル調整-->
+<div><%= paginate @players %></div>
