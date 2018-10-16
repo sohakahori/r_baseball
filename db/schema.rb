@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181014130920) do
+ActiveRecord::Schema.define(version: 20181016150152) do
+
+  create_table "players", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "team_id"
+    t.string "no", comment: "背番号"
+    t.string "name"
+    t.string "image"
+    t.integer "position", comment: "守備位置"
+    t.string "birthday"
+    t.string "height", comment: "身長"
+    t.string "weight", comment: "体重"
+    t.integer "throw", comment: "効き投げ: 1 => 右, 2 => 左"
+    t.integer "hit", comment: "効き打席: 1 => 右, 2 => 左, 3 => 両"
+    t.text "detail", comment: "備考"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_players_on_team_id"
+  end
 
   create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -22,4 +39,5 @@ ActiveRecord::Schema.define(version: 20181014130920) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "players", "teams"
 end

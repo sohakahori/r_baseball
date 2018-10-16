@@ -18,3 +18,7 @@ Team.create(name: 'オリックスバッファローズ', main_image: nil, stadi
 Team.create(name: '西武ライオンズ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 2)
 Team.create(name: '北海道日本ハムファイターズ', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 2)
 Team.create(name: '東北楽天ゴールデンイーグル', main_image: nil, stadium: Faker::Address.street_name, address: Faker::Address.full_address, league: 2)
+
+100.times do
+  Player.create(team_id: rand(1..12), no: rand(100), name: Faker::Name.name, position: rand(1..9), birthday: '1988.02.08', height: rand(160..220), weight: rand(50..120), throw: rand(1..2), hit: rand(1..3))
+end
