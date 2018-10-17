@@ -1,3 +1,4 @@
+<%= link_to '新規作成', new_admin_team_player_path(@team) %>
 <table class="table">
   <thead>
   <tr>
@@ -17,12 +18,12 @@
     <tr>
       <td><%= player.no %></td>
       <td><%= player.name %></td>
-      <td><%= player.position %></td>
+      <td><%= player.position_i18n %></td>
       <td><%= player.birthday %></td>
       <td><%= player.height %></td>
       <td><%= player.weight %></td>
-      <td><%= player.throw %></td>
-      <td><%= player.hit %></td>
+      <td><%= player.get_throw_name %></td>
+      <td><%= player.get_hit_name %></td>
       <td><%= player.detail %></td>
     </tr>
   <% end %>

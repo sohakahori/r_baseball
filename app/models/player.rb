@@ -14,6 +14,13 @@ class Player < ApplicationRecord
       right_fielder: 9,
   }
 
+
+  # アソシエーション
+  belongs_to :team
+
+
   # スコープ
   scope :search_team, ->(team_id) { where('team_id = ?', team_id) }
+
+  
 end

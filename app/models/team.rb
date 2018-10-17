@@ -1,5 +1,8 @@
 class Team < ApplicationRecord
 
+  # アソシエーション
+  has_many :players, :dependent => :destroy
+
   # スコープ
   scope :order_league, -> { order(:league) }
 
