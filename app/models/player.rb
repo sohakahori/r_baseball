@@ -18,9 +18,34 @@ class Player < ApplicationRecord
   # アソシエーション
   belongs_to :team
 
-
   # スコープ
   scope :search_team, ->(team_id) { where('team_id = ?', team_id) }
 
-  
+  # バリデーション
+  validates :no,
+            presence: { message: 'は必須です。'},
+            numericality: { only_integer: true, message: '数値で入力してください。'}
+  validates :name,
+            presence: { message: 'は必須です。'}
+  validates :birthday,
+            presence: { message: 'は必須です。'}
+  validates :position,
+            presence: { message: 'は必須です。'}
+  validates :height,
+            presence: { message: 'は必須です。'},
+            numericality: { message: '数値で入力してください'},
+            length: { in: 2..3, message: '2〜3桁の範囲で入力してください。' }
+  validates :weight,
+            presence: { message: 'は必須です。'},
+            numericality: { message: '数値で入力してください'},
+            length: { in: 2..3, message: '2〜3桁の範囲で入力してください。' }
+  validates :throw,
+            presence: { message: 'は必須です。'}
+  validates :hit,
+            presence: { message: 'は必須です。'}
+
+
+
+
+
 end

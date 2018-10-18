@@ -22,9 +22,9 @@
       <td><%= player.birthday %></td>
       <td><%= player.height %></td>
       <td><%= player.weight %></td>
-      <td><%= player.get_throw_name %></td>
-      <td><%= player.get_hit_name %></td>
-      <td><%= player.detail %></td>
+      <td><%= player.throw_i18n %></td>
+      <td><%= player.hit_i18n %></td>
+      <td><%= simple_format(player.detail) %></td>
     </tr>
   <% end %>
   </tbody>

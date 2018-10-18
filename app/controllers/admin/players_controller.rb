@@ -15,7 +15,8 @@ class Admin::PlayersController < Admin::ApplicationController
       flash[:success] = "選手の登録に成功しました。"
       redirect_back(fallback_location: admin_team_players_path)
     else
-
+      flash.now[:danger] = '入力項目に不備があります。'
+      render 'new'
     end
   end
 

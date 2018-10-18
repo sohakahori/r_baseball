@@ -1,6 +1,13 @@
 ja:
   enums:
     player:
+      throw:
+        right_throw: 右
+        left_throw: 左
+      hit:
+        right_hit: 右
+        left_hit: 左
+        switch_hit: 両
       position:
         pitcher: 投手
         catcher: 捕手
@@ -12,11 +19,12 @@ ja:
         center_fielder: 中堅手
         right_fielder: 右翼手
 
-      throw:
-        right_throw: 右
-        left_throw: 左
+#  activerecord:
+#    errors:
+#      models:
+#        player:
+#          attributes:
+#            position:
+#              not_a_number: '不正な入力値です。'
 
-      hit:
-        right_hit: 右
-        left_hit: 左
-        switch_hit: 両
+
