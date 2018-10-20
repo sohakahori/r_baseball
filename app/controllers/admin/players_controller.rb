@@ -1,4 +1,7 @@
-class Admin::PlayersController < Admin::ApplicationController
+class Admin::PlayersController < ApplicationController
+  layout 'admin'
+
+  before_action :authenticate_admin!
   before_action :get_team, only: [:index, :new, :create]
   before_action :get_player, only: [:edit, :show, :update, :destroy]
   before_action :check_params_process, only: [:update, :destroy, :show]
