@@ -1,0 +1,38 @@
+<table class="table">
+  <tr>
+    <th>名前</th>
+    <td><%= @player.name %></td>
+  </tr>
+  <tr>
+    <th>背番号</th>
+    <td><%= @player.no %></td>
+  </tr>
+  <tr>
+    <th>守備位置</th>
+    <td><%= @player.position_i18n %></td>
+  </tr>
+  <tr>
+    <th>生年月日</th>
+    <td><%= @player.birthday %></td>
+  </tr>
+  <tr>
+    <th>身長</th>
+    <td><%= @player.height %></td>
+  </tr>
+  <tr>
+    <th>体重</th>
+    <td><%= @player.weight %></td>
+  </tr>
+  <tr>
+    <th>投</th>
+    <td><%= @player.throw_i18n %></td>
+  </tr>
+  <tr>
+    <th>打</th>
+    <td><%= @player.hit_i18n %></td>
+  </tr>
+  <tr>
+    <th>備考</th>
+    <td><%= simple_format(@player.detail) %></td>
+  </tr>
+</table>

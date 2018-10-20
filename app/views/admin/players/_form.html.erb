@@ -7,7 +7,7 @@
     <% end %>
   </ul>
 <% end %>
-<%= form_for [:admin, @team, @player] do |f| %>
+<%= form_for [:admin, @player.team, @player] do |f| %>
   <div class="form-group">
     <%= f.label :no, '背番号' %>
     <%= f.text_field :no, class: 'form-control'%>
