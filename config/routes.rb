@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #
   #
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
     resources :teams, except: :show do
       resources :players
     end
+
+    resources :current_passwords, only: [:new, :create]
   end
 
   scope module: :public do
