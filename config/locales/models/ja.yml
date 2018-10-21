@@ -1,0 +1,32 @@
+ja:
+  activerecord:
+    models:
+      admin: 管理者
+    attributes:
+      admin:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+
+
+
+
+  enums:
+      player:
+        throw:
+          right_throw: 右
+          left_throw: 左
+        hit:
+          right_hit: 右
+          left_hit: 左
+          switch_hit: 両
+        position:
+          pitcher: 投手
+          catcher: 捕手
+          first_baseman: 一塁手
+          second_baseman: 二塁手
+          third_baseman: 三塁手
+          shortstop: 遊撃手
+          left_fielder: 左翼手
+          center_fielder: 中堅手
+          right_fielder: 右翼手
