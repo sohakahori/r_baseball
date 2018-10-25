@@ -33,11 +33,11 @@ class Player < ApplicationRecord
             presence: { message: 'は必須です。'}
   validates :height,
             presence: { message: 'は必須です。'},
-            numericality: { message: '数値で入力してください'},
+            numericality: { message: '数値で入力してください。'},
             length: { in: 2..3, message: '2〜3桁の範囲で入力してください。' }
   validates :weight,
             presence: { message: 'は必須です。'},
-            numericality: { message: '数値で入力してください'},
+            numericality: { message: '数値で入力してください。'},
             length: { in: 2..3, message: '2〜3桁の範囲で入力してください。' }
   validates :throw,
             presence: { message: 'は必須です。'}
