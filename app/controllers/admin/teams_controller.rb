@@ -2,7 +2,7 @@ class Admin::TeamsController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_admin!
-  before_action :get_team, only: [:edit, :update]
+  before_action :get_team, only: [:edit, :update, :destroy]
 
 
   def index
@@ -38,7 +38,7 @@ class Admin::TeamsController < ApplicationController
   end
 
   def destroy
-    @teams.destroy
+    @team.destroy
     flash[:success] = '球団の削除に成功しました。'
     redirect_to admin_teams_path
   end
