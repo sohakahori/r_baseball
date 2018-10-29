@@ -4,7 +4,7 @@ class Admin::PlayersController < ApplicationController
   before_action :authenticate_admin!
   before_action :get_team, only: [:index, :new, :create]
   before_action :get_player, only: [:edit, :show, :update, :destroy]
-  before_action :check_params_process, only: [:update, :destroy, :show]
+  before_action :check_params_process, only: [:edit, :update, :destroy, :show]
 
   def index
     @players = @team.players.page(params[:page]).per(30)
