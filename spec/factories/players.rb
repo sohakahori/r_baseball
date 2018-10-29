@@ -5,12 +5,12 @@ FactoryBot.define do
       n
     end
     name { 'テスト選手' }
-    position { Random.rand(1 .. 9) }
+    position { 'pitcher' }
     birthday { '1992/02/21' }
     height { 178 }
     weight { 78 }
-    throw { 1 }
-    hit { 2 }
+    throw { 'right_throw' }
+    hit { 'right_hit' }
     detail { '詳細内容' }
 
     trait :detail_of_nil do
