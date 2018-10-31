@@ -24,7 +24,7 @@ class Player < ApplicationRecord
   # バリデーション
   validates :no,
             presence: { message: 'は必須です。'},
-            numericality: { only_integer: true, message: '数値で入力してください。'}
+            numericality: { only_integer: true, message: 'は数値で入力してください。'}
   validates :name,
             presence: { message: 'は必須です。'}
   validates :birthday,
@@ -33,12 +33,12 @@ class Player < ApplicationRecord
             presence: { message: 'は必須です。'}
   validates :height,
             presence: { message: 'は必須です。'},
-            numericality: { message: '数値で入力してください。'},
-            length: { in: 2..3, message: '2〜3桁の範囲で入力してください。' }
+            numericality: { message: 'は数値で入力してください。'},
+            length: { in: 2..3, message: 'は2〜3桁の範囲で入力してください。' }
   validates :weight,
             presence: { message: 'は必須です。'},
-            numericality: { message: '数値で入力してください。'},
-            length: { in: 2..3, message: '2〜3桁の範囲で入力してください。' }
+            numericality: { message: 'は数値で入力してください。'},
+            length: { in: 2..3, message: 'は2〜3桁の範囲で入力してください。' }
   validates :throw,
             presence: { message: 'は必須です。'}
   validates :hit,
