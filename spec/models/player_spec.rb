@@ -4,14 +4,6 @@ RSpec.describe Player, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
   #
 
-  before :each do
-    @team = Team.create(
-        name: '読売ジャイアンツ',
-        league: '1',
-        stadium: '東京ドーム',
-        address: '東京都渋谷区'
-    )
-  end
   context '入力チェック正常系' do
     it "入力値が正しい時はバリデーションに引っかからないこと" do
       player = FactoryBot.build(:player)

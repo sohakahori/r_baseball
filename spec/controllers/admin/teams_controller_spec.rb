@@ -1,15 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Admin::TeamsController, type: :controller do
-  before do
-    @admin = FactoryBot.create(:admin)
-    @team = FactoryBot.create(:team, name: "テストチーム")
-  end
-
+  
+  let(:admin) { FactoryBot.create(:admin) }
+  let(:team) { FactoryBot.create(:team, name: "テストチーム") }
+  
   describe "#index" do
     context "認証済み" do
       it "200ステータスコードを返すこと" do
-        sign_in @admin
+        sign_in admin
         get :index
         expect(response).to have_http_status 200
       end
@@ -31,7 +30,7 @@ RSpec.describe Admin::TeamsController, type: :controller do
   describe "# new" do
     context "認証済み" do
       it "200ステータスコードを返すこと" do
-        sign_in @admin
+        sign_in admin
         get :new
         expect(response).to have_http_status 200
       end
@@ -53,7 +52,7 @@ RSpec.describe Admin::TeamsController, type: :controller do
   describe "# create" do
     context "認証済み" do
       it "teamsテーブルにinsertできること" do
-        sign_in @admin
+        sign_in admin
         team_params = FactoryBot.attributes_for(:team)
         expect {
           post :create,
@@ -89,10 +88,10 @@ RSpec.describe Admin::TeamsController, type: :controller do
   describe "# edit" do
     context "認証済み" do
       it "200ステータスコードを返すこと" do
-        sign_in @admin
+        sign_in admin
         get :edit,
             params: {
-                id: @team.id
+                id: team.id
             }
         expect(response).to have_http_status 200
       end
@@ -102,7 +101,7 @@ RSpec.describe Admin::TeamsController, type: :controller do
       it "302ステータスコードを返すこと" do
         get :edit,
             params: {
-                id: @team.id
+                id: team.id
             }
         expect(response).to have_http_status 302
       end
@@ -110,7 +109,7 @@ RSpec.describe Admin::TeamsController, type: :controller do
       it "ログイン画面へリダイレクトされること" do
         get :edit,
             params: {
-                id: @team.id
+                id: team.id
             }
         expect(response).to redirect_to new_admin_session_path
       end
@@ -121,13 +120,13 @@ RSpec.describe Admin::TeamsController, type: :controller do
     context "認証済み" do
       it "対象のレコードが更新されること" do
         team_params = FactoryBot.attributes_for(:team, name: "テストチーム更新")
-        sign_in @admin
+        sign_in admin
         put :update,
             params: {
-                id: @team.id,
+                id: team.id,
                 team: team_params
             }
-        expect(@team.reload.name).to eq "テストチーム更新"
+        expect(team.reload.name).to eq "テストチーム更新"
       end
     end
 
@@ -136,18 +135,18 @@ RSpec.describe Admin::TeamsController, type: :controller do
         team_params = FactoryBot.attributes_for(:team, name: "テストチーム更新")
         put :update,
             params: {
-                id: @team.id,
+                id: team.id,
                 team: team_params
             }
-        expect(@team.reload.name).not_to eq "テストチーム更新"
+        expect(team.reload.name).not_to eq "テストチーム更新"
       end
 
       it "302ステータスコードが返ること" do
         team_params = FactoryBot.attributes_for(:team, name: "テストチーム更新")
-        sign_in @admin
+        sign_in admin
         put :update,
             params: {
-                id: @team.id,
+                id: team.id,
                 team: team_params
             }
         expect(response).to have_http_status 302
@@ -157,7 +156,7 @@ RSpec.describe Admin::TeamsController, type: :controller do
         team_params = FactoryBot.attributes_for(:team, name: "テストチーム更新")
         put :update,
             params: {
-                id: @team.id,
+                id: team.id,
                 team: team_params
             }
         expect(response).to redirect_to new_admin_session_path
@@ -166,13 +165,14 @@ RSpec.describe Admin::TeamsController, type: :controller do
   end
 
   describe "#destroy" do
+    let!(:team) { FactoryBot.create(:team, name: "テストチーム") }
     context "認証済み" do
       it "対象のレコードが削除されること" do
-        sign_in @admin
+        sign_in admin
         expect {
           delete :destroy,
                  params: {
-              id: @team.id
+              id: team.id
             }
         }.to change(Team, :count).by(-1)
       end
@@ -183,7 +183,7 @@ RSpec.describe Admin::TeamsController, type: :controller do
         expect {
           delete :destroy,
                  params: {
-                     id: @team.id
+                     id: team.id
                  }
         }.not_to change(Team, :count)
       end
@@ -191,7 +191,7 @@ RSpec.describe Admin::TeamsController, type: :controller do
       it "302ステータスコードを返すこと" do
         delete :destroy,
                params: {
-                   id: @team.id
+                   id: team.id
                }
         expect(response).to have_http_status 302
       end
@@ -199,7 +199,7 @@ RSpec.describe Admin::TeamsController, type: :controller do
       it "ログイン画面へリダイレクトされること" do
         delete :destroy,
                params: {
-                   id: @team.id
+                   id: team.id
                }
         expect(response).to redirect_to new_admin_session_path
       end
