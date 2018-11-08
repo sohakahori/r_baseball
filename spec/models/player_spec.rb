@@ -23,10 +23,10 @@ RSpec.describe Player, type: :model do
       expect(player.errors[:no]).to include('は必須です。')
     end
 
-    it '背番号(no)が数値以外(文字列)入力の時はバリデーションに引っかかること' do
+    it '背番号(no)が数値以外(文字列)入力の時はバリデーションに引っかかること', akahori: true do
       player = FactoryBot.build(:player, :no_of_string)
       player.valid?
-      expect(player.errors[:no]).to include('数値で入力してください。')
+      expect(player.errors[:no]).to include('は数値で入力してください。')
     end
 
     it '選手名(name)が未入力の時はバリデーションに引っかかること' do
@@ -56,37 +56,37 @@ RSpec.describe Player, type: :model do
     it '身長(height)が数値以外の入力時はバリデーションに引っかかること' do
       player = FactoryBot.build(:player, :height_of_string)
       player.valid?
-      expect(player.errors.messages[:height]).to include('数値で入力してください。')
+      expect(player.errors.messages[:height]).to include('は数値で入力してください。')
     end
 
     it '身長(height)が1桁の数値入力時はバリデーションに引っかかること' do
       player = FactoryBot.build(:player, :height_of_a_digit)
       player.valid?
-      expect(player.errors[:height]).to include('2〜3桁の範囲で入力してください。')
+      expect(player.errors[:height]).to include('は2〜3桁の範囲で入力してください。')
     end
 
     it '身長(height)が4桁の数値入力時はバリデーションに引っかかること' do
       player = FactoryBot.build(:player, :height_of_four_digit)
       player.valid?
-      expect(player.errors[:height]).to include('2〜3桁の範囲で入力してください。')
+      expect(player.errors[:height]).to include('は2〜3桁の範囲で入力してください。')
     end
 
     it '体重(weight)が数値以外の入力時はバリデーションに引っかかること' do
       player = FactoryBot.build(:player, :weight_of_string)
       player.valid?
-      expect(player.errors.messages[:weight]).to include('数値で入力してください。')
+      expect(player.errors.messages[:weight]).to include('は数値で入力してください。')
     end
 
     it '体重(weight)が1桁の数値入力時はバリデーションに引っかかること' do
       player = FactoryBot.build(:player, :weight_of_a_digit)
       player.valid?
-      expect(player.errors[:weight]).to include('2〜3桁の範囲で入力してください。')
+      expect(player.errors[:weight]).to include('は2〜3桁の範囲で入力してください。')
     end
 
     it '身長(weight)が4桁の数値入力時はバリデーションに引っかかること' do
       player = FactoryBot.build(:player, :weight_of_four_digit)
       player.valid?
-      expect(player.errors[:weight]).to include('2〜3桁の範囲で入力してください。')
+      expect(player.errors[:weight]).to include('は2〜3桁の範囲で入力してください。')
     end
 
     it '投(throw)が未入力の時はバリデーションに引っかかること' do
