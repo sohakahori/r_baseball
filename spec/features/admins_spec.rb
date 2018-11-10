@@ -49,7 +49,7 @@ RSpec.feature "Admins", type: :feature do
     end
   end
 
-  describe "管理者管理", forcus: true do
+  describe "管理者管理" do
     scenario "管理者の一覧が表示されること(ページング含む)" do
       sign_in admin
       visit admin_admins_path
@@ -59,6 +59,27 @@ RSpec.feature "Admins", type: :feature do
       click_on "Next"
       expect(page).to have_content "16奥田 16花子"
       expect(page).not_to have_content "15奥田 15花子"
+    end
+  end
+
+  describe "管理者作成" do
+    scenario "管理者が作成できること", forcus: true do
+      sign_in admin
+      visit admin_admins_path
+      click_on "新規作成"
+      expect(page).to have_content "苗字"
+      expect(page).to have_content "名前"
+      # expect(page).to have_content "登録"
+      fill_in "苗字", with: "テスト苗字"
+      fill_in "名前", with: "テスト名前"
+      fill_in "メールアドレス", with: "spec@test.com"
+      select 'スーパー', from: '権限'
+      fill_in "パスワード", with: "testtest"
+      fill_in "確認用パスワード", with: "testtest"
+      click_on "登録"
+      expect(page).to have_content "管理者の登録に成功しました。"
+      expect(page).to have_content "テスト苗字 テスト名前"
+      expect(page).to have_content "spec@test.com"
     end
   end
 end
