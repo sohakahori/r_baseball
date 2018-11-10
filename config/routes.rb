@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     end
 
     resources :current_passwords, only: [:new, :create]
+    resources :admins
   end
 
   scope module: :public do
