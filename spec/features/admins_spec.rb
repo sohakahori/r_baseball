@@ -53,33 +53,59 @@ RSpec.feature "Admins", type: :feature do
     scenario "管理者の一覧が表示されること(ページング含む)" do
       sign_in admin
       visit admin_admins_path
-      # 指定の管理者一覧が表示されていること(15件 更新日時降順)
-      expect(page).to have_content "15奥田 15花子"
-      expect(page).not_to have_content "15奥田 16花子"
+      # 指定の管理者一覧が表示されていること(15件 更新日時降順、id降順)
+      expect(page).to have_content "7奥田 7花子"
+      expect(page).not_to have_content "6奥田 6花子"
       click_on "Next"
-      expect(page).to have_content "16奥田 16花子"
-      expect(page).not_to have_content "15奥田 15花子"
+      expect(page).to have_content "6奥田 6花子"
+      expect(page).not_to have_content "7奥田 7花子"
     end
   end
 
   describe "管理者作成" do
-    scenario "管理者が作成できること", forcus: true do
+    scenario "管理者が作成できること" do
       sign_in admin
       visit admin_admins_path
       click_on "新規作成"
       expect(page).to have_content "苗字"
       expect(page).to have_content "名前"
       # expect(page).to have_content "登録"
-      fill_in "苗字", with: "テスト苗字"
-      fill_in "名前", with: "テスト名前"
-      fill_in "メールアドレス", with: "spec@test.com"
-      select 'スーパー', from: '権限'
-      fill_in "パスワード", with: "testtest"
-      fill_in "確認用パスワード", with: "testtest"
-      click_on "登録"
+      expect {
+        fill_in "苗字", with: "テスト苗字"
+        fill_in "名前", with: "テスト名前"
+        fill_in "メールアドレス", with: "spec@test.com"
+        select 'スーパー', from: '権限'
+        fill_in "パスワード", with: "testtest"
+        fill_in "確認用パスワード", with: "testtest"
+        click_on "登録"
+      }.to change(Admin, :count).by(1)
+
       expect(page).to have_content "管理者の登録に成功しました。"
+      expect(Admin.last.email).to eq "spec@test.com"
       expect(page).to have_content "テスト苗字 テスト名前"
       expect(page).to have_content "spec@test.com"
+    end
+
+    scenario "入力不備時エラー処理となること" do
+      sign_in admin
+      visit admin_admins_path
+      click_on "新規作成"
+      expect(page).to have_content "苗字"
+      expect(page).to have_content "名前"
+      # expect(page).to have_content "登録"
+      expect {
+        fill_in "苗字", with: nil
+        fill_in "名前", with: nil
+        fill_in "メールアドレス", with: nil
+        select 'スーパー', from: '権限'
+        fill_in "パスワード", with: nil
+        fill_in "確認用パスワード", with: nil
+        click_on "登録"
+      }.to change(Admin, :count).by(0)
+      expect(page).to have_content "入力項目に不備があります。"
+      expect(page).to have_content "メールアドレスを入力してください"
+      expect(page).to have_content "苗字は必須です。"
+      expect(page).to have_content "名前は必須です。"
     end
   end
 end

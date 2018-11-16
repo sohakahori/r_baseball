@@ -9,6 +9,7 @@ FactoryBot.define do
     sequence(:last_name) do |n|
       "苗字#{n}"
     end
+    role {1}
     password { "testtest" }
   end
 end
