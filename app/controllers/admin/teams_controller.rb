@@ -1,7 +1,5 @@
-class Admin::TeamsController < ApplicationController
-  layout 'admin'
+class Admin::TeamsController < Admin::ApplicationController
 
-  before_action :authenticate_admin!
   before_action :get_team, only: [:edit, :update, :destroy]
 
 

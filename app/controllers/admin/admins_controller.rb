@@ -1,7 +1,5 @@
-class Admin::AdminsController < ApplicationController
-  layout 'admin'
+class Admin::AdminsController < Admin::ApplicationController
 
-  before_action :authenticate_admin!
   before_action :set_admin, only:[:edit, :update, :destroy]
 
   def index

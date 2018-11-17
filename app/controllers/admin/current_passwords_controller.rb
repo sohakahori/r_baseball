@@ -1,7 +1,4 @@
-class Admin::CurrentPasswordsController < ApplicationController
-  layout 'admin'
-
-  before_action :authenticate_admin!
+class Admin::CurrentPasswordsController < Admin::ApplicationController
 
   def new
     @admin = current_admin
