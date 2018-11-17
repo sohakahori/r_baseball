@@ -8,7 +8,7 @@
     <th>Role</th>
     <th>作成日時</th>
     <th>更新日時</th>
-<!--    <th>編集</th>-->
+    <th>編集</th>
 <!--    <th>削除</th>-->
   </tr>
   </thead>
@@ -21,8 +21,12 @@
       <td><%= admin.role %></td>
       <td><%= admin.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
       <td><%= admin.updated_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
-<!--      <td><%#= link_to("編集", edit_admin_team_path(team), class: 'btn btn-success') %></td>-->
-<!--      <td><%#= link_to("削除", admin_team_path(team), method: :delete, data: {confirm: '削除してよろしいでしょうか？'}, class: 'btn btn-danger') %></td>-->
+      <td><%= link_to '変更', edit_admin_admin_path(admin), class: 'btn btn-success' %></td>
+      <td>
+        <% if current_admin != admin %>
+          <%= link_to("削除", admin_admin_path(admin), method: :delete, data: {confirm: '削除してよろしいでしょうか？'}, class: 'btn btn-danger') %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
   </tbody>
