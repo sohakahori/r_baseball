@@ -7,8 +7,14 @@ Rails.application.routes.draw do
   # devise_for :admins, path: 'admin/admins'
   devise_for :admins, :controllers => {
       sessions: "admin/admins/sessions",
-      registrations: "admin/admins/registrations",
+      registrations: "admin/admins/registrationsregistrationsregistrations",
       passwords: "admin/admins/passwords"
+  }
+
+  devise_for :users, controllers: {
+      sessions: 'public/users/sessions',
+      registrations: 'public/users/registrations',
+      passwords: "public/users/passwords"
   }
 
   namespace :admin do
@@ -20,7 +26,8 @@ Rails.application.routes.draw do
     resources :admins
   end
 
-  scope module: :public do
-    # 例resources :products # => /products
-  end
+
+  # scope module: :public do
+  #   # 例resources :products # => /products
+  # end
 end
