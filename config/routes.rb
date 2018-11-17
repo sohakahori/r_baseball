@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  apipie
+
   root to: "public/teams#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #
@@ -24,6 +26,14 @@ Rails.application.routes.draw do
 
     resources :current_passwords, only: [:new, :create]
     resources :admins
+  end
+
+
+  # API
+  namespace :api do
+    namespace :v1 do
+      resources :teams
+    end
   end
 
 

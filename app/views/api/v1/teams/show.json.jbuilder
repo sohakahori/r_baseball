@@ -1,0 +1,1 @@
+json.extract! @team, :id, :name, :main_image, :stadium, :address, :league, :created_at, :updated_at
