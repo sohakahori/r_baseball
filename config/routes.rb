@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # devise_for :admins, path: 'admin/admins'
   devise_for :admins, :controllers => {
       sessions: "admin/admins/sessions",
-      registrations: "admin/admins/registrationsregistrationsregistrations",
+      registrations: "admin/admins/registrations",
       passwords: "admin/admins/passwords"
   }
 
@@ -30,6 +30,16 @@ Rails.application.routes.draw do
 
 
   # API
+  #
+  # /api/v1/authでアクセス可能
+  namespace :api do
+    scope :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+          registrations: 'api/v1/auth/registrations'
+      }
+    end
+  end
+
   namespace :api do
     namespace :v1 do
       resources :teams
@@ -41,3 +51,6 @@ Rails.application.routes.draw do
   #   # 例resources :products # => /products
   # end
 end
+
+
+

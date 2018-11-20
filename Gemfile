@@ -51,6 +51,8 @@ gem 'enum_help'
 
 # デバイス
 gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
 
 # i18n
 gem 'rails-i18n'

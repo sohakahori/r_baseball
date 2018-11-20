@@ -1,4 +1,4 @@
-class Api::V1::TeamsController < Api::ApplicationController
+class Api::V1::TeamsController < Api::V1::ApplicationController
 
   api :GET, '/api/v1/teams', '球団一覧を返します'
   # エラーの指定はこのような形で

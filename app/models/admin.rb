@@ -6,9 +6,9 @@ class Admin < ApplicationRecord
 
 
   # バリデーション
-  validates :first_name, presence: {message: "は必須です。"}
-  validates :last_name, presence: {message: "は必須です。"}
-  validates :role, presence: {message: "は必須です。"}
+  # validates :first_name, presence: {message: "は必須です。"}
+  # validates :last_name, presence: {message: "は必須です。"}
+  # validates :role, presence: {message: "は必須です。"}
   validates :email,
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "はメールアドレスを入力してください。" }
 
