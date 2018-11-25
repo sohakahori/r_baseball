@@ -13,7 +13,7 @@ class Api::V1::TeamsController < Api::V1::ApplicationController
       Content-Type:application/json,
       access-token:jnvx5l-6EamupzK2BO7Jlg,
       client:27g9tBTLDVKEhmT5etvDdw,
-      uid:sohakahori@gmail.com
+      uid:test@test.com
     }
     ### Body 
     {}
@@ -80,7 +80,7 @@ class Api::V1::TeamsController < Api::V1::ApplicationController
 
 
 
-  api :GET, '/api/v1/teams/:id', '球団一覧を返します'
+  api :GET, '/api/v1/teams/:id', '球団詳細を返します'
   # エラーの指定はこのような形で
   # error code: 401, desc: 'Unauthorized'
   error code: 404, desc: 'Not Found'
@@ -94,7 +94,7 @@ class Api::V1::TeamsController < Api::V1::ApplicationController
       Content-Type:application/json,
       access-token:jnvx5l-6EamupzK2BO7Jlg,
       client:27g9tBTLDVKEhmT5etvDdw,
-      uid:sohakahori@gmail.com
+      uid:test@test.com
     }
     ### Body 
     {}
