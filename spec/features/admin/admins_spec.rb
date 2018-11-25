@@ -109,7 +109,7 @@ RSpec.feature "Admins", type: :feature do
     end
   end
 
-  describe "管理者編集", forcus: true do
+  describe "管理者編集" do
     let(:edit_admin) { FactoryBot.create(:admin, first_name: "勇人", last_name: "坂本", email: "sakamoto@kyozin.com", role: '2', password: "hayato") }
     scenario "管理者を編集できること" do
       sign_in admin
@@ -127,7 +127,7 @@ RSpec.feature "Admins", type: :feature do
       expect(page).to have_content "kamei@kyozin.com"
     end
 
-    scenario "不正な入力値の時はバリデーションで弾かれること", forcus: true do
+    scenario "不正な入力値の時はバリデーションで弾かれること" do
       sign_in admin
       visit edit_admin_admin_path(edit_admin)
       expect {
@@ -144,7 +144,7 @@ RSpec.feature "Admins", type: :feature do
     end
   end
 
-  describe "管理者削除", forcus: true do
+  describe "管理者削除" do
     scenario "管理者を削除できること" do
       sign_in admin
       visit admin_admins_path

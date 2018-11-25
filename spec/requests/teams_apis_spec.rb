@@ -12,7 +12,7 @@ RSpec.describe "TeamsApis", type: :request do
     @auth_headers = token_sign_in user
   end
 
-  describe "GET /api/v1/teams", force: true do
+  describe "GET /api/v1/teams" do
     it "球団一覧を返すこと" do
 
       get api_v1_teams_path, headers: @auth_headers
@@ -23,7 +23,7 @@ RSpec.describe "TeamsApis", type: :request do
     end
   end
 
-  describe "GET /api/v1/teams/:id", force: true do
+  describe "GET /api/v1/teams/:id" do
     it "球団詳細を返すこと" do
       get api_v1_team_path(central_team), headers: @auth_headers
       expect(response).to have_http_status(200)

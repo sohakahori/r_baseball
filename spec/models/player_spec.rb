@@ -23,7 +23,7 @@ RSpec.describe Player, type: :model do
       expect(player.errors[:no]).to include('は必須です。')
     end
 
-    it '背番号(no)が数値以外(文字列)入力の時はバリデーションに引っかかること', akahori: true do
+    it '背番号(no)が数値以外(文字列)入力の時はバリデーションに引っかかること' do
       player = FactoryBot.build(:player, :no_of_string)
       player.valid?
       expect(player.errors[:no]).to include('は数値で入力してください。')
