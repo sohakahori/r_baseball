@@ -94,7 +94,7 @@ class Api::V1::PlayersController < Api::V1::ApplicationController
     }
   EDOC
   def index
-    @players = @team.players.page(params[:page]).per(3)
+    @players = @team.players.page(params[:page]).per(30)
   end
 
   api :GET, '/api/v1/teams/:team_id/players/:id', '選手詳細を返します'
