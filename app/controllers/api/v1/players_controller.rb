@@ -95,6 +95,7 @@ class Api::V1::PlayersController < Api::V1::ApplicationController
   EDOC
   def index
     @players = @team.players.page(params[:page]).per(30)
+    render 'index', formats: 'json', handlers: 'jbuilder'
   end
 
   api :GET, '/api/v1/teams/:team_id/players/:id', '選手詳細を返します'
@@ -140,6 +141,7 @@ class Api::V1::PlayersController < Api::V1::ApplicationController
     }
   EDOC
   def show
+    render 'show', formats: 'json', handlers: 'jbuilder'
   end
 
   def get_team
