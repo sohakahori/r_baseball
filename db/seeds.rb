@@ -26,3 +26,13 @@ end
 (1..20).each do |i|
   Admin.create(email: Faker::Internet.email, password: "testtest", role: 2, first_name: "名前#{i}", last_name: "苗字#{i}")
 end
+
+(1..4).each do |i|
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "testtest")
+end
+
+user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "testtest")
+
+(1..100).each do |i|
+  user.boards.create(title: Faker::Book.title)
+end
