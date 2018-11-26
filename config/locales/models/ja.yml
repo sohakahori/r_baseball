@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       admin: 管理者
+      board: スレッド
     attributes:
       admin:
         email: メールアドレス
@@ -11,6 +12,8 @@ ja:
         role: 権限
         password_confirmation: 確認用パスワード
         current_password: 現在のパスワード
+      board:
+        title: タイトル
 
 
 
