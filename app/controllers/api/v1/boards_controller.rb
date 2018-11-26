@@ -15,9 +15,17 @@ class Api::V1::BoardsController < Api::V1::ApplicationController
   end
 
   def destroy
-    @board = Board.find(params[:id])
-    @board.destroy
-    render :json => {'status' => 'success'}
+    begin
+      @board = Board.find(params[:id])
+      if current_user.id != @board.user.id
+        render :json => {'code' => '400', 'errors' => ["スレッドは作成者しか削除することはできません。"]} and return
+      end
+      @board.destroy!
+    rescue => e
+      render :json => {'code' => '400', 'errors' => [e.message]} and return
+    end
+
+    render :json => {'status' => 'success'} and return
   end
 
   private
