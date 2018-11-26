@@ -45,6 +45,8 @@ Rails.application.routes.draw do
       resources :teams do
         resources :players, only: [:index, :show]
       end
+
+      resources :boards, only: [:index, :create, :destroy]
     end
   end
 
