@@ -1,5 +1,8 @@
 FactoryBot.define do
   factory :board do
-    title { "MyString" }
+    sequence :title do |n|
+      "title#{n}"
+    end
+    association :user
   end
 end
