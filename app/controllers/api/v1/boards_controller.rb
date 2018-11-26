@@ -1,7 +1,11 @@
 class Api::V1::BoardsController < Api::V1::ApplicationController
 
   def index
-    @boards = Board.all.page(params[:page]).per(30)
+    if params[:title].present?
+      @boards = Board.search_title(params[:title]).page(params[:page]).per(30)
+    else
+      @boards = Board.all.page(params[:page]).per(30)
+    end
     render 'index', formats: 'json', handlers: 'jbuilder'
   end
 

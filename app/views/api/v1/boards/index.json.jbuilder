@@ -1,6 +1,7 @@
 json.set! :bords do
   json.array! @boards do |board|
     json.id board.id
+    json.title board.title
     json.user_id board.user_id
     json.created_at board.created_at
     json.updated_at board.updated_at
