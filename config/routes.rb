@@ -46,7 +46,9 @@ Rails.application.routes.draw do
         resources :players, only: [:index, :show]
       end
 
-      resources :boards, only: [:index, :create, :destroy]
+      resources :boards, only: [:index, :create, :destroy] do
+        resources :responses
+      end
     end
   end
 
