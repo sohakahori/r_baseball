@@ -138,13 +138,25 @@ class Api::V1::BoardsController < Api::V1::ApplicationController
   ### Error(パラメータ)
   {
     "code": "400",
-    "errors": [
-      "タイトルを入力してください"
-    ]
+    "status": "error",
+    "data": {
+      "board": {
+        "title": null
+      }
+    },
+    "errors": {
+      "title": [
+        "を入力してください"
+      ],
+      "full_messages": [
+        "タイトルを入力してください"
+      ]
+    }
   }
   EDOC
   def create
     @board = current_user.boards.build(bord_params)
+    @params = params
     if @board.save
       render 'create', formats: 'json', handlers: 'jbuilder'
     else
