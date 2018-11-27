@@ -34,7 +34,7 @@ end
 user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, nickname: Faker::Name.name, email: Faker::Internet.email, password: "testtest")
 
 (1..40).each do |i|
-  board = user.boards.create!(title: Faker::Book.title)
+  board = user.boards.create!(title: "タイトル#{i}")
   (1..50).each do |d|
     board.responses.create!(user: user, body: Faker::WorldCup.team)
   end
