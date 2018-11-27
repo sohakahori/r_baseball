@@ -5,7 +5,9 @@ class Board < ApplicationRecord
             length: { maximum: 30 }
 
   # アソシエーション
+  has_many :responses
   belongs_to :user
+
 
   # スコープ
   scope :search_title, ->(title) { where("title LIKE ?", "%#{title}%") }

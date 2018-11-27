@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181127031510) do
+ActiveRecord::Schema.define(version: 20181127090928) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 20181127031510) do
     t.index ["team_id"], name: "index_players_on_team_id"
   end
 
+  create_table "responses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "board_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_responses_on_board_id"
+    t.index ["user_id"], name: "index_responses_on_user_id"
+  end
+
   create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
     t.string "main_image"
@@ -88,4 +98,6 @@ ActiveRecord::Schema.define(version: 20181127031510) do
   end
 
   add_foreign_key "players", "teams"
+  add_foreign_key "responses", "boards"
+  add_foreign_key "responses", "users"
 end

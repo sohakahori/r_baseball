@@ -27,12 +27,15 @@ end
   Admin.create(email: Faker::Internet.email, password: "testtest", role: 2, first_name: "名前#{i}", last_name: "苗字#{i}")
 end
 
-(1..4).each do |i|
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "testtest")
+(1..5).each do |i|
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, nickname: Faker::Name.name, email: Faker::Internet.email, password: "testtest")
 end
 
-user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "testtest")
+user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, nickname: Faker::Name.name, email: Faker::Internet.email, password: "testtest")
 
-(1..100).each do |i|
-  user.boards.create(title: Faker::Book.title)
+(1..40).each do |i|
+  board = user.boards.create!(title: Faker::Book.title)
+  (1..50).each do |d|
+    board.responses.create!(user: user, body: Faker::WorldCup.team)
+  end
 end
