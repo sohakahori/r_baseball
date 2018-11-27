@@ -64,7 +64,8 @@ RSpec.describe "BoardsApis", type: :request do
 
         json = JSON.parse(response.body)
         expect(json["code"]).to eq "400"
-        expect(json["errors"][0]).to eq "タイトルを入力してください"
+        expect(json["errors"]["title"][0]).to eq "を入力してください"
+        expect(json["errors"]["full_messages"][0]).to eq "タイトルを入力してください"
       end
 
       it "タイトルが30字以上の時はスレッドを作成できないこと" do
@@ -82,7 +83,8 @@ RSpec.describe "BoardsApis", type: :request do
 
         json = JSON.parse(response.body)
         expect(json["code"]).to eq "400"
-        expect(json["errors"][0]).to eq "タイトルは30文字以内で入力してください"
+        expect(json["errors"]["title"][0]).to eq "は30文字以内で入力してください"
+        expect(json["errors"]["full_messages"][0]).to eq "タイトルは30文字以内で入力してください"
       end
     end
 
