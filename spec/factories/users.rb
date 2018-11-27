@@ -11,6 +11,11 @@ FactoryBot.define do
     sequence(:email) do |n|
       "test@test#{n}.com"
     end
+
+    sequence(:nickname) do |n|
+      "nickname#{n}"
+    end
+
     password { 'testtest' }
   end
 end
