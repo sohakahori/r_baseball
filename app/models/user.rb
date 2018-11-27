@@ -7,4 +7,9 @@ class User < ApplicationRecord
 
   # アソシエーション
   has_many :boards
+
+  # バリデーション
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :nickname, presence: true
 end
