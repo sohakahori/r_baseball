@@ -18,6 +18,15 @@ class Api::V1::ResponsesController < Api::V1::ApplicationController
     end
   end
 
+  def destroy
+    @response = Response.find(params[:id])
+    if @response.user != current_user
+      render :json => {"code" => "400","status" => "error", "errors" => ["コメントは作成者しか削除することはできません。"]} and return
+    end
+    @response.destroy
+    render :json => {"status" => "success"} and return
+  end
+
   private
   def response_params
     params.require(:response).permit(:body)

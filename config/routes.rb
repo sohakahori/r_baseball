@@ -47,7 +47,7 @@ Rails.application.routes.draw do
       end
 
       resources :boards, only: [:index, :create, :destroy] do
-        resources :responses
+        resources :responses, only: [:index, :create, :destroy]
       end
     end
   end
