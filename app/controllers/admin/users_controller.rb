@@ -4,9 +4,13 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy
+    begin
+      User.find(params[:id]).destroy
+    rescue => e
+      flash[:danger] = e.message
+      redirect_back(fallback_location: admin_users_path) and return
+    end
     flash[:success] = "ユーザーの削除に成功しました。"
-    redirect_back(fallback_location: admin_users_path)
+    redirect_back(fallback_location: admin_users_path) and return
   end
 end
