@@ -6,8 +6,8 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   # アソシエーション
-  has_many :boards
-  has_many :responses
+  has_many :boards, dependent: :destroy
+  has_many :responses, dependent: :destroy
 
   # バリデーション
   validates :first_name, presence: true

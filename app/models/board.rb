@@ -5,7 +5,7 @@ class Board < ApplicationRecord
             length: { maximum: 30 }
 
   # アソシエーション
-  has_many :responses
+  has_many :responses, dependent: :destroy
   belongs_to :user
 
 

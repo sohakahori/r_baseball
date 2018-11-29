@@ -22,12 +22,11 @@ Team.create(name: '東北楽天ゴールデンイーグル', main_image: nil, st
 100.times do
   Player.create(team_id: rand(1..12), no: rand(100), name: Faker::Name.name, position: rand(1..9), birthday: '1988.02.08', height: rand(160..220), weight: rand(50..120), throw: rand(1..2), hit: rand(1..3))
 end
-
 (1..20).each do |i|
   Admin.create(email: Faker::Internet.email, password: "testtest", role: 2, first_name: "名前#{i}", last_name: "苗字#{i}")
 end
 
-(1..5).each do |i|
+(1..40).each do |i|
   User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, nickname: Faker::Name.name, email: Faker::Internet.email, password: "testtest")
 end
 
