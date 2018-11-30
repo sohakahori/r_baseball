@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :current_passwords, only: [:new, :create]
     resources :admins
     resources :users, only: [:index, :destroy]
+    resources :boards, only: [:index, :destroy]
   end
 
 

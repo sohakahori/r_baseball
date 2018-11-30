@@ -13,4 +13,9 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :nickname, presence: true
+
+
+  def get_full_name
+    self.last_name + " " + self.first_name
+  end
 end
