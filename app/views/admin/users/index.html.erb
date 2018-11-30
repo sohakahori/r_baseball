@@ -2,7 +2,7 @@
 <div>
   <%= form_tag(admin_users_path, method: :get) do %>
     <%#= label_tag :名前 %>
-    <%= text_field_tag(:search_word, @search_word, class: "form-control", placeholder: '苗字・名前・苗字 名前・メールアドレス') %>
+    <%= text_field_tag(:search_word, @search_word, class: "form-control", placeholder: '苗字・名前・ニックネーム・苗字 名前・メールアドレス') %>
     <br>
     <%= submit_tag "検索", class: 'btn btn-success' %>
   <% end %>

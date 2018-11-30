@@ -5,7 +5,7 @@ class Admin::UsersController < Admin::ApplicationController
       @users = User.where("first_name LIKE ?", "%#{@search_word}%")
                    .or(User.where("first_name LIKE ?", "%#{@search_word}%"))
                    .or(User.where("last_name LIKE ?", "%#{@search_word}%"))
-                   .or(User.where("email LIKE ?", "%#{@search_word}%"))
+                   .or(User.where("nickname LIKE ?", "%#{@search_word}%"))
                    .or(User.where("email LIKE ?", "%#{@search_word}%"))
                    .or(User.where("concat_ws(' ', last_name, first_name) like ?", "%#{@search_word}%"))
                    .page(params[:page]).per(30)
