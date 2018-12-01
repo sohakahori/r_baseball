@@ -5,14 +5,14 @@ class Admin::BoardsController < Admin::ApplicationController
     @comment_search = params[:comment_search]
     @user_search    = params[:user_search]
 
-    @boards = Board.joins(:responses).includes(:user).distinct
+    @boards = Board.includes(:responses).includes(:user)
 
     if @title_search.present?
       @boards = @boards.search_title(@title_search)
     end
 
     if @comment_search.present?
-      @boards = @boards.merge(Response.search_like_body(@comment_search))
+      @boards = @boards.merge(Response.search_like_body(@comment_search)).references(:responses)
     end
 
     if @user_search.present?

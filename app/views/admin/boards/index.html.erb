@@ -18,6 +18,7 @@
     <th>スレッド名</th>
     <th>作成者ID</th>
     <th>作成者</th>
+    <th>作成者<br>(ニックネーム)</th>
     <th>メールアドレス</th>
     <th>作成日時</th>
     <th>更新日時</th>
@@ -32,6 +33,7 @@
     <td><%= board.title %></td>
     <td><%= board.user.id %></td>
     <td><%= board.user.get_full_name %></td>
+    <td><%= board.user.nickname %></td>
     <td><%= board.user.email %></td>
     <td><%= board.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
     <td><%= board.updated_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
