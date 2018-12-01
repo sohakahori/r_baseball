@@ -25,4 +25,15 @@ class Admin::BoardsController < Admin::ApplicationController
 
     @boards = @boards.page(params[:page]).per(30)
   end
+
+  def destroy
+    begin
+      Board.find(params[:id]).destroy
+    rescue => e
+      flash[:danger] = e.message
+      redirect_back(fallback_location: admin_boards_path) and return
+    end
+    flash[:success] = "スレッドを削除しました。"
+    redirect_back(fallback_location: admin_boards_path) and return
+  end
 end

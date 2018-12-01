@@ -37,7 +37,9 @@
     <td><%= board.user.email %></td>
     <td><%= board.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
     <td><%= board.updated_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
-    <td>削除リンク</td>
+    <td>
+      <%= link_to "削除", admin_board_path(board), method: :delete, data: { confirm: "削除してよろしいでしょうか？" }, class: "btn btn-danger" %>
+    </td>
   </tr>
   <% end %>
 
