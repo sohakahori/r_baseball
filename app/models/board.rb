@@ -11,4 +11,5 @@ class Board < ApplicationRecord
 
   # スコープ
   scope :search_title, ->(title) { where("title LIKE ?", "%#{title}%") }
+  scope :search_title, ->(title) { where("title LIKE ?", "%#{title}%") }
 end
