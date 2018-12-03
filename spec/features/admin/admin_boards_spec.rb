@@ -22,7 +22,6 @@ RSpec.feature "Admin::Boards", type: :feature do
         visit admin_teams_path
         click_on "スレッド管理"
         expect(page).to have_content "スレッド一覧"
-        puts Board.all.count
         expect(page).to have_content "タイトル30"
         expect(page).not_to have_content "タイトル31"
 
