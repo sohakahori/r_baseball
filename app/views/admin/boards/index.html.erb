@@ -22,6 +22,7 @@
     <th>メールアドレス</th>
     <th>作成日時</th>
     <th>更新日時</th>
+    <th>コメント一覧</th>
     <th>削除</th>
   </tr>
   </thead>
@@ -37,6 +38,9 @@
     <td><%= board.user.email %></td>
     <td><%= board.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
     <td><%= board.updated_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
+    <td>
+      <%= link_to "コメント一覧", admin_board_responses_path(board), class: "btn btn-success" %>
+    </td>
     <td>
       <%= link_to "削除", admin_board_path(board), method: :delete, data: { confirm: "削除してよろしいでしょうか？" }, class: "btn btn-danger" %>
     </td>
