@@ -6,7 +6,7 @@ RSpec.feature "Admin::Responses", type: :feature do
 
   let(:admin) { FactoryBot.create(:admin) }
 
-  feature "index", forcus: true do
+  feature "index" do
     let(:user) { FactoryBot.create(:user, first_name: "名前", last_name: "苗字", nickname: "ニックネーム", email: "test@test.com") }
     let(:search_user) { FactoryBot.create(:user, first_name: "検索名前", last_name: "検索苗字", nickname: "検索ニックネーム", email: "search@search.com") }
     let!(:board) { FactoryBot.create(:board, title: "スレッド名", user: user) }
@@ -67,7 +67,7 @@ RSpec.feature "Admin::Responses", type: :feature do
     end
   end
 
-  feature "index", forcus: true do
+  feature "index" do
     let!(:response) { FactoryBot.create(:response) }
     context "認証済み" do
       scenario "response(コメント)を削除できること" do
