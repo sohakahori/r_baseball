@@ -61,7 +61,7 @@ RSpec.feature "Admin::Boards", type: :feature do
   end
 
 
-  feature "destroy", forcus: true do
+  feature "destroy" do
     let!(:board) { FactoryBot.create(:board) }
     context "認証済み" do
       scenario "board(スレッド)を削除できること" do
