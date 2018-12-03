@@ -15,4 +15,16 @@ class Admin::ResponsesController < Admin::ApplicationController
 
     @responses = @responses.page(params[:page]).per(30)
   end
+
+  def destroy
+    begin
+      response = Response.find(params[:id])
+      response.destroy
+      flash[:success] = "コメントを削除しました"
+      redirect_back(fallback_location: admin_board_responses_path(params[:board_id], page: params[:page])) and return
+    rescue => e
+      flash[:danger] = e.message
+      redirect_back(fallback_location: admin_board_responses_path(params[:board_id], page: params[:page])) and return
+    end
+  end
 end
