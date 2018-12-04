@@ -48,7 +48,8 @@ class Admin::TeamsController < Admin::ApplicationController
         :stadium,
         :address,
         :league,
-        :main_image
+        :main_image,
+        :remove_main_image
     )
   end
 

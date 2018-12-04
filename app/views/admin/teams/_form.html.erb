@@ -16,7 +16,11 @@
   <div class="form-group">
     <%=f.label :main_image,"球団画像" %>
     <div>
-      <%= image_tag @team.main_image.url if @team.main_image? %>
+      <% if @team.main_image? %>
+        <%= image_tag @team.main_image.url  %><br>
+        <%= f.label :削除 %>
+        <%= f.check_box :remove_main_image %>
+      <% end %>
     </div>
     <%= f.file_field :main_image %>
   </div>
