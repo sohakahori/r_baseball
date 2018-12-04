@@ -4,6 +4,7 @@
   <tr>
     <th>ID</th>
     <th>球団</th>
+    <th>画像</th>
     <th>リーグ</th>
     <th>スタジアム</th>
     <th>住所</th>
@@ -17,6 +18,7 @@
   <tr>
     <td><%= team.id %></td>
     <td><%= team.name %></td>
+    <td><%= image_tag(team.main_image.thumb.url) if team.main_image? %></td>
     <td><%= team.get_league_name %></td>
     <td><%= team.stadium %></td>
     <td><%= team.address %></td>

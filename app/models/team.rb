@@ -1,5 +1,7 @@
 class Team < ApplicationRecord
 
+  mount_uploader :main_image, Admin::Teams::MainImageUploader
+
   # アソシエーション
   has_many :players, :dependent => :destroy
 

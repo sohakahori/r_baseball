@@ -65,6 +65,11 @@ gem 'apipie-rails'
 # for Markdown
 gem 'maruku'
 
+# 画像アップロード
+gem 'carrierwave'
+gem 'rmagick'
+gem 'mini_magick'
+
 
 
 group :development, :test do

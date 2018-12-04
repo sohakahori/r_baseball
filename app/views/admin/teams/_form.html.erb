@@ -12,6 +12,15 @@
     <%= f.label :name, '球団名' %>
     <%= f.text_field :name, class: 'form-control'%>
   </div>
+
+  <div class="form-group">
+    <%=f.label :main_image,"球団画像" %>
+    <div>
+      <%= image_tag @team.main_image.url if @team.main_image? %>
+    </div>
+    <%= f.file_field :main_image %>
+  </div>
+
   <div class="form-group">
     <%= f.label :league, 'リーグ' %>
     <%= f.select :league, {'セントラル' => 1, 'パフィシック' => 2}, {}, { 'class' =>'form-control'} %>
