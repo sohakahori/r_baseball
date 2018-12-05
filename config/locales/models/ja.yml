@@ -21,6 +21,10 @@ ja:
         nickname: ニックネーム
       response:
         body: コメント
+      team:
+        main_image: 球団画像
+      player:
+        image: 選手画像
 
 
 
