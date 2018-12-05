@@ -71,7 +71,9 @@ class Admin::PlayersController < Admin::ApplicationController
         :weight,
         :throw,
         :hit,
-        :detail
+        :detail,
+        :image,
+        :remove_image
     )
   end
 

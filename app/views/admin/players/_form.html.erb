@@ -17,6 +17,16 @@
     <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div class="form-group">
+    <%= f.label :選手画像 %>
+    <% if @player.image? %>
+      <%= image_tag @player.image %><br>
+      <%= f.label :削除 %>
+      <%= f.check_box :remove_image %>
+    <% end %>
+    <%= f.file_field :image, class: '' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :birthday, '誕生日' %>
     <%= f.date_field :birthday, class: 'form-control', value: @player.birthday %>
   </div>

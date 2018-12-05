@@ -1,5 +1,7 @@
 class Player < ApplicationRecord
 
+  mount_uploader :image, Admin::Players::ImageUploader
+
   enum throw: { right_throw: 1, left_throw: 2 }
   enum hit: { right_hit: 1, left_hit: 2, switch_hit: 3}
   enum position: {
