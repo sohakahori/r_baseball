@@ -7,6 +7,7 @@ RSpec.feature "Players", type: :feature do
   let(:admin) { FactoryBot.create(:admin) }
   let!(:team) { FactoryBot.create(:team) }
   let!(:player) { FactoryBot.create(:player, team: team) }
+  let(:search_player) { FactoryBot.create(:player, team: team, name: "検索名前", no: 11) }
 
   feature "#index" do
     context "認証済み" do
@@ -15,6 +16,24 @@ RSpec.feature "Players", type: :feature do
         visit admin_teams_path
         click_on "選手一覧"
         expect(page).to have_content player.name
+      end
+
+      scenario "検索結果を返すこと(name)" do
+        sign_in admin
+        visit admin_teams_path
+        click_on "選手一覧"
+        fill_in "search_word", with: search_player.name
+        click_on "検索"
+        expect(page).to have_content search_player.name
+      end
+
+      scenario "検索結果を返すこと(no)" do
+        sign_in admin
+        visit admin_teams_path
+        click_on "選手一覧"
+        fill_in "search_word", with: search_player.no
+        click_on "検索"
+        expect(page).to have_content search_player.no
       end
     end
   end
