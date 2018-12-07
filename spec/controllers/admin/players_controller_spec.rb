@@ -18,6 +18,15 @@ RSpec.describe Admin::PlayersController, type: :controller do
             }
         expect(response).to have_http_status 200
       end
+
+      it "csvを返すこと" do
+        sign_in admin
+        get :index, format: :csv,
+            params: {
+                team_id: team.id
+            }
+        expect(response.content_type).to eq "text/csv"
+      end
     end
 
     context "未認証" do
