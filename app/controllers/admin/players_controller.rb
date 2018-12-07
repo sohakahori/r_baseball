@@ -1,4 +1,5 @@
 class Admin::PlayersController < Admin::ApplicationController
+  require 'csv'
 
   before_action :get_team, only: [:index, :new, :create]
   before_action :get_player, only: [:edit, :show, :update, :destroy]
@@ -12,7 +13,14 @@ class Admin::PlayersController < Admin::ApplicationController
       @players = @players.search_name(@search_word).or(@players.search_no(@search_word))
     end
 
-    @players = @players.page(params[:page]).per(30)
+    respond_to do |format|
+      format.html do
+        @players = @players.page(params[:page]).per(30)
+      end
+      format.csv do
+        products_csv
+      end
+    end
   end
 
   def show
@@ -82,6 +90,31 @@ class Admin::PlayersController < Admin::ApplicationController
         :image,
         :remove_image
     )
+  end
+
+  def products_csv
+    csv_date = CSV.generate do |csv|
+      csv_column_names = ["ID", "球団", "背番号","名前", "守備位置", "生年月日", "身長", "体重", "投	", "打", "作成日時", "更新日時"]
+      csv << csv_column_names
+      @players.each do |player|
+        csv_column_values = [
+            player.id,
+            player.team.name,
+            player.no,
+            player.name,
+            player.position_i18n,
+            player.birthday,
+            player.height,
+            player.weight,
+            player.throw_i18n,
+            player.hit_i18n,
+            player.created_at.strftime('%Y年%m月%d日 %H:%M:%S'),
+            player.updated_at.strftime('%Y年%m月%d日 %H:%M:%S')
+        ]
+        csv << csv_column_values
+      end
+    end
+    send_data(csv_date,filename: "player.csv")
   end
 
 end
