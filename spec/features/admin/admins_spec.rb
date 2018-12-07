@@ -50,15 +50,37 @@ RSpec.feature "Admins", type: :feature do
   end
 
   describe "管理者管理" do
+    let!(:search_admin) { FactoryBot.create(:admin, first_name: "検索名前", last_name: "検索苗字", email: "search@search.com") }
+
     scenario "管理者の一覧が表示されること(ページング含む)" do
       sign_in admin
       visit admin_admins_path
       # 指定の管理者一覧が表示されていること(15件 更新日時降順、id降順)
-      expect(page).to have_content "7奥田 7花子"
-      expect(page).not_to have_content "6奥田 6花子"
+      expect(page).to have_content "8奥田 8花子"
+      expect(page).not_to have_content "7奥田 花子"
       click_on "Next"
-      expect(page).to have_content "6奥田 6花子"
-      expect(page).not_to have_content "7奥田 7花子"
+      expect(page).to have_content "7奥田 7花子"
+      expect(page).not_to have_content "8奥田 8花子"
+    end
+
+    scenario "管理者の一覧が表示されること(name検索)" do
+      sign_in admin
+      visit admin_admins_path
+      fill_in "search_word", with: "#{search_admin.last_name} #{search_admin.first_name}"
+      click_on "検索"
+      expect(page).to have_content "検索名前"
+      expect(page).to have_content "検索名前"
+      expect(page).to have_content "search@search.com"
+    end
+
+    scenario "管理者の一覧が表示されること(email検索)" do
+      sign_in admin
+      visit admin_admins_path
+      fill_in "search_word", with: search_admin.email
+      click_on "検索"
+      expect(page).to have_content "検索名前"
+      expect(page).to have_content "検索名前"
+      expect(page).to have_content "search@search.com"
     end
   end
 
