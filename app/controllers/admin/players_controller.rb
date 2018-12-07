@@ -5,7 +5,14 @@ class Admin::PlayersController < Admin::ApplicationController
   before_action :check_params_process, only: [:edit, :update, :destroy, :show]
 
   def index
-    @players = @team.players.page(params[:page]).per(30)
+    @search_word = params[:search_word]
+    @players = @team.players
+
+    if @search_word.present?
+      @players = @players.search_name(@search_word).or(@players.search_no(@search_word))
+    end
+
+    @players = @players.page(params[:page]).per(30)
   end
 
   def show

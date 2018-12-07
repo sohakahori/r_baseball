@@ -22,6 +22,8 @@ class Player < ApplicationRecord
 
   # スコープ
   scope :search_team, ->(team_id) { where('team_id = ?', team_id) }
+  scope :search_name, ->(search_word) { where("name LIKE ?", "%#{search_word}%") }
+  scope :search_no, ->(search_word) { where(no: search_word) }
 
   # バリデーション
   validates :no,

@@ -1,3 +1,13 @@
+<div>
+  <%= form_tag(admin_team_players_path(@team), method: :get, id: "admin_search_form") do %>
+    <%= text_field_tag(:search_word, @search_word, class: "form-control", placeholder: '苗字・名前・苗字 名前・背番号') %>
+    <br>
+    <%= submit_tag "検索", class: 'btn btn-success' %>
+<!--    <input type="submit" value="検索" class="btn btn-success" onclick="submitAction('/admin/admins')">-->
+<!--    <input type="submit" value="CSV" class="btn btn-info" onclick="submitAction('/admin/admins.csv')">-->
+  <% end %>
+</div>
+
 <%= link_to '新規作成', new_admin_team_player_path(@team) %>
 <table class="table">
   <thead>
