@@ -1,11 +1,14 @@
 <div>
-  <%= form_tag(admin_admins_path, method: :get) do %>
+  <%= form_tag(admin_admins_path(format: :csv), method: :get, id: "admin_search_form") do %>
     <%#= label_tag :名前 %>
     <%= text_field_tag(:search_word, @search_word, class: "form-control", placeholder: '苗字・名前・苗字 名前・メールアドレス') %>
     <br>
-    <%= submit_tag "検索", class: 'btn btn-success' %>
+    <%#= submit_tag "検索", class: 'btn btn-success' %>
+    <input type="submit" value="検索" class="btn btn-success" onclick="submitAction('/admin/admins')">
+    <input type="submit" value="CSV" class="btn btn-info" onclick="submitAction('/admin/admins.csv')">
   <% end %>
 </div>
+<%#= link_to "csv出力",admin_admins_path(format: :csv) %>
 <br><br>
 <div><%= link_to '新規作成', new_admin_admin_path %></div>
 <table class="table">

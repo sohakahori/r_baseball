@@ -1,15 +1,27 @@
 class Admin::AdminsController < Admin::ApplicationController
-
+  require 'csv'
   before_action :set_admin, only:[:edit, :update, :destroy]
 
   def index
-    @admins = Admin
-    @search_word = params[:search_word]
-    if @search_word.present?
-      @admins = @admins.search_full_name(@search_word)
-                   .or(@admins.search_email(@search_word))
+    respond_to do |format|
+      @admins = Admin
+      @search_word = params[:search_word]
+
+      format.html do
+        if @search_word.present?
+          search_admins
+        end
+        @admins = @admins.updated_at_desc.id_desc.page(params[:page]).per(15)
+      end
+      format.csv do
+        if @search_word.present?
+          search_admins
+        else
+          @admins = @admins.all
+        end
+        products_csv
+      end
     end
-    @admins = @admins.updated_at_desc.id_desc.page(params[:page]).per(15)
   end
 
   def new
@@ -60,5 +72,29 @@ class Admin::AdminsController < Admin::ApplicationController
 
   def set_admin
     @admin = Admin.find(params[:id])
+  end
+
+  def search_admins
+    @admins = @admins.search_full_name(@search_word)
+                  .or(@admins.search_email(@search_word))
+  end
+
+  def products_csv
+    csv_date = CSV.generate do |csv|
+      csv_column_names = ["ID", "full_name", "メールアドレス", "権限", "作成日時", "更新日時"]
+      csv << csv_column_names
+      @admins.each do |admin|
+        csv_column_values = [
+            admin.id,
+            admin.full_name,
+            admin.email,
+            admin.role,
+            admin.created_at.strftime('%Y年%m月%d日 %H:%M:%S'),
+            admin.updated_at.strftime('%Y年%m月%d日 %H:%M:%S')
+        ]
+        csv << csv_column_values
+      end
+    end
+    send_data(csv_date, filename: "admins.csv")
   end
 end
