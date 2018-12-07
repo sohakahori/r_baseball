@@ -1,3 +1,12 @@
+<div>
+  <%= form_tag(admin_admins_path, method: :get) do %>
+    <%#= label_tag :名前 %>
+    <%= text_field_tag(:search_word, @search_word, class: "form-control", placeholder: '苗字・名前・苗字 名前・メールアドレス') %>
+    <br>
+    <%= submit_tag "検索", class: 'btn btn-success' %>
+  <% end %>
+</div>
+<br><br>
 <div><%= link_to '新規作成', new_admin_admin_path %></div>
 <table class="table">
   <thead>

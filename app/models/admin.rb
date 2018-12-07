@@ -15,7 +15,8 @@ class Admin < ApplicationRecord
   # スコープ
   scope :updated_at_desc, -> { order("updated_at DESC") }
   scope :id_desc, -> { order("id DESC") }
-
+  scope :search_full_name, ->(search_word) { where("concat_ws(' ', last_name, first_name) LIKE ?", "%#{search_word}%") }
+  scope :search_email, ->(search_word) { where("email LIKE ?", "%#{search_word}%") }
 
 
 

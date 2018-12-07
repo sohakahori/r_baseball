@@ -3,7 +3,13 @@ class Admin::AdminsController < Admin::ApplicationController
   before_action :set_admin, only:[:edit, :update, :destroy]
 
   def index
-    @admins = Admin.updated_at_desc.id_desc.page(params[:page]).per(15)
+    @admins = Admin
+    @search_word = params[:search_word]
+    if @search_word.present?
+      @admins = @admins.search_full_name(@search_word)
+                   .or(@admins.search_email(@search_word))
+    end
+    @admins = @admins.updated_at_desc.id_desc.page(params[:page]).per(15)
   end
 
   def new
