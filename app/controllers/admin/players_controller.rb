@@ -66,7 +66,7 @@ class Admin::PlayersController < Admin::ApplicationController
       redirect_back(fallback_location: new_admin_team_player_path(@team)) and return
     else
       begin
-        import_count = Player.import_player params[:players_csv]
+        import_count = Player.import_player params[:players_csv], @team
       rescue => e
         flash[:danger] = "入力形式が不正です。 #{e.message}"
         redirect_back(fallback_location: new_admin_team_player_path(@team)) and return
