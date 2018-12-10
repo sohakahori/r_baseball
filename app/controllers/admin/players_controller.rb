@@ -1,7 +1,7 @@
 class Admin::PlayersController < Admin::ApplicationController
   require 'csv'
 
-  before_action :get_team, only: [:index, :new, :create]
+  before_action :get_team, only: [:index, :new, :create, :import_csv]
   before_action :get_player, only: [:edit, :show, :update, :destroy]
   before_action :check_params_process, only: [:edit, :update, :destroy, :show]
 
@@ -60,6 +60,22 @@ class Admin::PlayersController < Admin::ApplicationController
     redirect_to admin_team_players_path(@player.team) and return
   end
 
+  def import_csv
+    if params[:players_csv].blank?
+      flash[:danger] = 'CSVファイルを選択してください。'
+      redirect_back(fallback_location: new_admin_team_player_path(@team)) and return
+    else
+      begin
+        import_count = Player.import_player params[:players_csv]
+      rescue => e
+        flash[:danger] = "入力形式が不正です。 #{e.message}"
+        redirect_back(fallback_location: new_admin_team_player_path(@team)) and return
+      end
+      flash[:success] = "#{import_count}の選手を登録しました。"
+      redirect_back(fallback_location: new_admin_team_player_path(@team)) and return
+    end
+  end
+
   private
   def get_team
     @team = Team.find params[:team_id]
@@ -75,6 +91,8 @@ class Admin::PlayersController < Admin::ApplicationController
       redirect_to admin_team_players_path(@player.team) and return
     end
   end
+
+
 
   def player_params
     params.require(:player).permit(

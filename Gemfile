@@ -70,6 +70,9 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'mini_magick'
 
+# バルクインサート、アップデート
+gem 'activerecord-import'
+
 
 
 group :development, :test do

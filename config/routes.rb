@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :teams, except: :show do
       resources :players
+      post '/import_csv', to: 'players#import_csv'
     end
 
     resources :current_passwords, only: [:new, :create]

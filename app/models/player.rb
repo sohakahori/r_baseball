@@ -49,6 +49,29 @@ class Player < ApplicationRecord
             presence: { message: 'は必須です。'}
 
 
+  def self.import_player file
+    current_player_count = self.count
+    players = []
+    CSV.foreach(file.path, headers: true, encoding: 'Shift_JIS:UTF-8') do |row|
+      players << self.new(
+          team: @team,
+          no: row["no"],
+          name: row["name"],
+          position: row["position"],
+          birthday: row["birthday"],
+          height: row["height"],
+          weight: row["weight"],
+          throw: row["throw"],
+          hit: row["hit"],
+          detail: row["detail"]
+      )
+    end
+    self.import!(players)
+    self.count - current_player_count
+  end
+
+
+
 
 
 
