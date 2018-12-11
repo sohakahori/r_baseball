@@ -73,6 +73,9 @@ gem 'mini_magick'
 # バルクインサート、アップデート
 gem 'activerecord-import'
 
+# .env
+gem 'dotenv-rails'
+
 
 
 group :development, :test do
