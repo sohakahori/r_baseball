@@ -71,7 +71,7 @@ class Admin::PlayersController < Admin::ApplicationController
         flash[:danger] = "入力形式が不正です。 #{e.message}"
         redirect_back(fallback_location: new_admin_team_player_path(@team)) and return
       end
-      flash[:success] = "#{import_count}の選手を登録しました。"
+      flash[:success] = "#{import_count}件の選手を登録しました。"
       redirect_back(fallback_location: new_admin_team_player_path(@team)) and return
     end
   end
