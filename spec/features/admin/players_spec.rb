@@ -507,4 +507,20 @@ RSpec.feature "Players", type: :feature do
       end
     end
   end
+
+  feature "#import_csv" do
+    context "認証済み" do
+      scenario "csvインポートできること" do
+        sign_in admin
+        visit admin_teams_path
+        click_on "選手一覧"
+        click_on "新規作成"
+        expect {
+          attach_file "players_csv", "#{Rails.root}/spec/files/player_import.csv"
+          click_on "インポート"
+        }.to change(Player, :count).by(4)
+        expect(page).to have_content "4件の選手を登録しました。"
+      end
+    end
+  end
 end
