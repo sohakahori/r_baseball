@@ -27,13 +27,14 @@
     <nav class="navbar navbar-default navbar-fixed-top">
 
       <div class="navbar-header">
-        <a href="" class="navbar-brand">Home</a>
+<!--        <a href="" class="navbar-brand">Home</a>-->
+        <%= link_to 'Home', admin_teams_path, class: "navbar-brand" %>
       </div>
 
       <ul class="nav navbar-nav">
-        <li class="active"><a href="">menu1</a></li>
-        <li><a href="">menu2</a></li>
-        <li><a href="">menu3</a></li>
+<!--        <li class="active"><a href="">menu1</a></li>-->
+<!--        <li><a href="">menu2</a></li>-->
+<!--        <li><a href="">menu3</a></li>-->
         <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete%></li>
       </ul>
 
@@ -49,13 +50,11 @@
         </div>
         <!-- <div class="panel-body"> -->
         <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a href="/admin/teams"><i class="glyphicon glyphicon-pencil"></i>球団管理</a></li>
+          <li class=""><a href="/admin/teams"><i class="glyphicon glyphicon-pencil"></i>球団管理</a></li>
           <li class=""><a href="/admin/admins"><i class="glyphicon glyphicon-pencil"></i>管理者管理</a></li>
           <li class=""><a href="/admin/users"><i class="glyphicon glyphicon-pencil"></i>ユーザー管理</a></li>
           <li class=""><a href="/admin/boards"><i class="glyphicon glyphicon-pencil"></i>スレッド管理</a></li>
           <li><a href="/admin/current_passwords/new"><i class="glyphicon glyphicon-download"></i>パスワード変更</a></li>
-          <li><a href=""><i class="glyphicon glyphicon-leaf"></i> submenu3</a></li>
-          <li><a href=""><i class="glyphicon glyphicon-folder-open"></i> submenu4</a></li>
         </ul>
       </div>
     </div>
