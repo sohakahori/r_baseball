@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+//Todo: 管理画面用と公開用で分けたい
+#footer{
+  background-color: #aaa;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color : #fff;
+  margin-top:30px;
+}

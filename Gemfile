@@ -25,6 +25,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+# jbuilder-pagination
+gem 'jbuilder_pagination'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -33,12 +35,58 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# faker
+gem 'faker'
+gem 'forgery'
+
+# bootstrap
+gem 'bootstrap-sass'
+gem 'sass-rails', '~> 5.0'
+
+# kaminari
+gem 'kaminari'
+
+# enum_help
+gem 'enum_help'
+
+# デバイス
+gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
+
+# i18n
+gem 'rails-i18n'
+
+# spring-commands-rspec
+gem 'spring-commands-rspec'
+
+# api-document
+gem 'apipie-rails'
+# for Markdown
+gem 'maruku'
+
+# 画像アップロード
+gem 'carrierwave'
+gem 'rmagick'
+gem 'mini_magick'
+
+# バルクインサート、アップデート
+gem 'activerecord-import'
+
+# .env
+gem 'dotenv-rails'
+
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.6.0'
+  gem "factory_bot_rails"
+  gem 'rails-controller-testing'
 end
 
 group :development do

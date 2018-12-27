@@ -1,0 +1,42 @@
+<% if @team.errors.any? %>
+<ul>
+  <% @team.errors.full_messages.each do |msg| %>
+    <li>
+      <span style="color:red;"><%= msg %></span>
+    </li>
+  <% end %>
+</ul>
+<% end %>
+<%= form_for [:admin, @team] do |f| %>
+  <div class="form-group">
+    <%= f.label :name, '球団名' %>
+    <%= f.text_field :name, class: 'form-control'%>
+  </div>
+
+  <div class="form-group">
+    <%=f.label :main_image,"球団画像" %>
+    <div>
+      <% if @team.main_image? %>
+        <%= image_tag @team.main_image.url  %><br>
+        <%= f.label :削除 %>
+        <%= f.check_box :remove_main_image %>
+      <% end %>
+    </div>
+    <%= f.file_field :main_image %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :league, 'リーグ' %>
+    <%= f.select :league, {'セントラル' => 1, 'パフィシック' => 2}, {}, { 'class' =>'form-control'} %>
+  </div>
+  <div class="form-group">
+    <%= f.label :stadium, 'スタジアム' %>
+    <%= f.text_field :stadium, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address, '住所' %>
+    <%= f.text_field :address, class: 'form-control' %>
+  </div>
+  <div><%= f.submit(button_name, class: 'btn btn-success') %></div>
+
+<% end %>

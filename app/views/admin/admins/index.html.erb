@@ -1,0 +1,47 @@
+<div>
+  <%= form_tag(admin_admins_path(format: :csv), method: :get, id: "admin_search_form") do %>
+    <%#= label_tag :名前 %>
+    <%= text_field_tag(:search_word, @search_word, class: "form-control", placeholder: '苗字・名前・苗字 名前・メールアドレス') %>
+    <br>
+    <%#= submit_tag "検索", class: 'btn btn-success' %>
+    <input type="submit" value="検索" class="btn btn-success" onclick="submitAction('/admin/admins')">
+    <input type="submit" value="CSV" class="btn btn-info" onclick="submitAction('/admin/admins.csv')">
+  <% end %>
+</div>
+<%#= link_to "csv出力",admin_admins_path(format: :csv) %>
+<br><br>
+<div><%= link_to '新規作成', new_admin_admin_path %></div>
+<table class="table">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>名前</th>
+    <th>メールアドレス</th>
+    <th>Role</th>
+    <th>作成日時</th>
+    <th>更新日時</th>
+    <th>編集</th>
+<!--    <th>削除</th>-->
+  </tr>
+  </thead>
+  <tbody>
+  <% @admins.each do |admin| %>
+    <tr>
+      <td><%= admin.id %></td>
+      <td><%= admin.full_name %></td>
+      <td><%= admin.email %></td>
+      <td><%= admin.role %></td>
+      <td><%= admin.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
+      <td><%= admin.updated_at.strftime('%Y年%m月%d日 %H:%M:%S') %></td>
+      <td><%= link_to '変更', edit_admin_admin_path(admin), class: 'btn btn-success' %></td>
+      <td>
+        <% if current_admin != admin %>
+          <%= link_to("削除", admin_admin_path(admin), method: :delete, data: {confirm: '削除してよろしいでしょうか？'}, class: 'btn btn-danger') %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<!--Todo: スタイル調整-->
+<div><%= paginate @admins %></div>

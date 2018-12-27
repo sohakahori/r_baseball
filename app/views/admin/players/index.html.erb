@@ -1,0 +1,49 @@
+<div>
+  <%= form_tag('', method: :get, id: "admin_search_form") do %>
+    <%= text_field_tag(:search_word, @search_word, class: "form-control", placeholder: '苗字・名前・苗字 名前・背番号') %>
+    <br>
+    <input type="submit" value="検索" class="btn btn-success" onclick="submitAction('<%= admin_team_players_path(@team) %>')">
+    <input type="submit" value="CSV" class="btn btn-info" onclick="submitAction('<%= admin_team_players_path(@team, format: :csv) %>')">
+  <% end %>
+</div>
+<br><br>
+
+<%= link_to '新規作成', new_admin_team_player_path(@team) %>
+<table class="table">
+  <thead>
+  <tr>
+    <th>選手画像</th>
+    <th>背番号</th>
+    <th>名前</th>
+    <th>守備位置</th>
+    <th>生年月日</th>
+    <th>身長</th>
+    <th>体重</th>
+    <th>投</th>
+    <th>打</th>
+    <th>詳細</th>
+    <th>変更</th>
+    <th>削除</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @players.each do |player| %>
+    <tr>
+      <td><%= image_tag player.image.thumb %></td>
+      <td><%= player.no %></td>
+      <td><%= player.name %></td>
+      <td><%= player.position_i18n %></td>
+      <td><%= player.birthday %></td>
+      <td><%= player.height %></td>
+      <td><%= player.weight %></td>
+      <td><%= player.throw_i18n %></td>
+      <td><%= player.hit_i18n %></td>
+      <td><%= link_to "詳細", admin_team_player_path(player.team, player), class: 'btn btn-success' %></td>
+      <td><%= link_to '変更', edit_admin_team_player_path(player.team, player), class: 'btn btn-success' %></td>
+      <td><%= link_to '削除', admin_team_player_path(player.team, player), method: :delete, data: { confirm: '削除してよろしいでしょうか？' }, class: 'btn btn-danger' %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<!--Todo: スタイル調整-->
+<div><%= paginate @players %></div>

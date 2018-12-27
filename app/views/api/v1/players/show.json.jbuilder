@@ -1,0 +1,1 @@
+json.extract! @player, :id, :team_id, :no, :name, :image, :position, :birthday, :height, :weight, :throw, :hit, :detail, :created_at, :updated_at

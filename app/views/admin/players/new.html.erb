@@ -1,0 +1,8 @@
+<div>
+  <%= form_tag(admin_team_import_csv_path(@team), method: :post, multipart: true) do %>
+    <%= label :players_csv, "CSVインポート" %>
+    <%= file_field_tag :players_csv %><br>
+    <%= submit_tag 'インポート', class: 'btn btn-success' %>
+  <% end %>
+</div><br><br>
+<%= render 'form', button_name:'登録' %>

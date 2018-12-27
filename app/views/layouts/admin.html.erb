@@ -1,0 +1,79 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Baseball管理画面</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+
+<body>
+
+<div class="">
+
+  <!-- navbar -->
+  <div class="row">
+    <nav class="navbar navbar-default navbar-fixed-top">
+
+      <div class="navbar-header">
+<!--        <a href="" class="navbar-brand">Home</a>-->
+        <%= link_to 'Home', admin_teams_path, class: "navbar-brand" %>
+      </div>
+
+      <ul class="nav navbar-nav">
+<!--        <li class="active"><a href="">menu1</a></li>-->
+<!--        <li><a href="">menu2</a></li>-->
+<!--        <li><a href="">menu3</a></li>-->
+        <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete%></li>
+      </ul>
+
+    </nav>
+  </div>
+
+  <!-- content -->
+  <div class="row" style="padding:80px 0 0 0">
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Menu
+        </div>
+        <!-- <div class="panel-body"> -->
+        <ul class="nav nav-pills nav-stacked">
+          <li class=""><a href="/admin/teams"><i class="glyphicon glyphicon-pencil"></i>球団管理</a></li>
+          <li class=""><a href="/admin/admins"><i class="glyphicon glyphicon-pencil"></i>管理者管理</a></li>
+          <li class=""><a href="/admin/users"><i class="glyphicon glyphicon-pencil"></i>ユーザー管理</a></li>
+          <li class=""><a href="/admin/boards"><i class="glyphicon glyphicon-pencil"></i>スレッド管理</a></li>
+          <li><a href="/admin/current_passwords/new"><i class="glyphicon glyphicon-download"></i>パスワード変更</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- main -->
+    <div class="col-md-9">
+<!--      flashメッセージ-->
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name %>">
+          <%= msg.html_safe %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+<div id="footer">copy left everything free.</div>
+</body>
+
+</html>
